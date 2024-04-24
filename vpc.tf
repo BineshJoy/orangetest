@@ -21,7 +21,7 @@ resource "aws_subnet" module.label_vpc.tags {
     vpc_id = aws_vpc.main.id
     cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "true"
-    availability_zone = "us-west-1a"
+    availability_zone = var.aws_region
     tags = {
         Name = module.label_vpc.tags
     }
@@ -31,7 +31,7 @@ resource "aws_subnet" module.label_vpc.tags {
     vpc_id = aws_vpc.main.id
     cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "false"
-    availability_zone = "us-west-1a"
+    availability_zone = var.aws_region
     tags = {
         Name = module.label_vpc.tags
     }
