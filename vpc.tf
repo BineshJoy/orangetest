@@ -17,23 +17,23 @@ resource "aws_vpc" "main" {
 # Create your subnets here
 # =========================
 # For Subnets
-resource "aws_subnet" "main-public-1" {
+resource "aws_subnet" module.label_vpc.tags {
     vpc_id = aws_vpc.main.id
-    cidr_block = "192.170.1.0/24"
+    cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "true"
     availability_zone = "us-west-1a"
     tags = {
-        Name = "main-public-1"
+        Name = module.label_vpc.tags
     }
 }
 
-resource "aws_subnet" "main-private-1" {
+resource "aws_subnet" module.label_vpc.tags {
     vpc_id = aws_vpc.main.id
-    cidr_block = "192.170.4.0/24"
+    cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "false"
     availability_zone = "us-west-1a"
     tags = {
-        Name = "main-private-1"
+        Name = module.label_vpc.tags
     }
 }
 
@@ -53,7 +53,7 @@ resource "aws_route_table" "main-public" {
         gateway_id = aws_internet_gateway.main-gw.id
     }
     tags = {
-        Name = "main-public-1"
+        Name = module.label_vpc.tags
     }
 }
 
