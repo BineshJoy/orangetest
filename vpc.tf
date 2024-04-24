@@ -17,7 +17,7 @@ resource "aws_vpc" "main" {
 # Create your subnets here
 # =========================
 # For Subnets
-resource "aws_subnet" module.label_vpc.tags {
+resource "aws_subnet" module.label_vpc {
     vpc_id = aws_vpc.main.id
     cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "true"
@@ -27,7 +27,7 @@ resource "aws_subnet" module.label_vpc.tags {
     }
 }
 
-resource "aws_subnet" module.label_vpc.tags {
+resource "aws_subnet" module.label_vpc {
     vpc_id = aws_vpc.main.id
     cidr_block = var.vpc_cidr
     map_public_ip_on_launch = "false"
